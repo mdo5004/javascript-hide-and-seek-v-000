@@ -6,29 +6,29 @@ function nestedTarget(){
     return getFirstSelector(".target")
 }
 function deepestChild(){
-    var grand_node = document.querySelector("div.grand-node")
+    var grand_node = document.querySelector("div#grand-node")
+    
+    let current = grand_node
+    let next = []
+
+    while (current) {
+            
+        
+        if (current.children.length) {
+            for (let i = 0, l = current.children.length; i < l; i++) {
+                next.push(current.children[i])
+            }
+        } else {
+            return current
+        }
+//           debugger 
+        current = next.shift()
+    }
     
 }
 function increaseRankBy(n){
-
-}
-
-function find(array, criteriaFn) {
-  
-  let current = array
-  let next = []
- 
-  while (current) {
-    if (criteriaFn(current)) {
-      return current
+    var ranks = document.querySelectorAll(".ranked-list li")
+    for (var i = 0; i < ranks.length; i++){
+        ranks[i].innerHTML = parseInt(ranks[i].innerHTML) + n
     }
- 
-      if (Array.isArray(current)) {
-      for (let i = 0, l = current.length; i < l; i++) {
-        next.push(current[i])
-      }
-    }
-    current = next.shift()
-  }
-  return null
 }
